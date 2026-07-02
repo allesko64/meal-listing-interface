@@ -1,16 +1,22 @@
 import "./App.css"
 import { useMeals } from "./hooks/useMeals"
+import { useDarkMode } from "./hooks/useDarkMode"
 import { MealCard } from "./components/MealCard"
+import { DarkModeToggle } from "./components/DarkModeToggle"
 
 export default function App() {
   const { meals, loading, error } = useMeals()
+  const { isDark, toggle } = useDarkMode()
 
   return (
     <main className="page-wrapper">
       <div className="container flex-col">
-        <header className="flex-col">
-          <p className="title-section">Curated collection</p>
-          <h1 className="title-display">Recipes</h1>
+        <header className="header-row">
+          <div className="flex-col">
+            <p className="title-section">Curated collection</p>
+            <h1 className="title-display">Recipes</h1>
+          </div>
+          <DarkModeToggle isDark={isDark} onToggle={toggle} />
         </header>
 
         {loading && <p className="text-muted">Loading meals...</p>}
