@@ -5,7 +5,7 @@
   --color-surface: #fafaf7;
   --color-border: #e0d8cc;
   --color-text: #2c2c28;
-  --color-text-muted: #665d4f;
+  --color-text-muted: #5c4d34;
   --color-accent: #7a9e7e;
   --color-accent-dark: #4a5c4d;
   --color-sand: #e8e0d0;
@@ -53,6 +53,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-body);
   line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 img {
@@ -403,3 +404,200 @@ a {
     padding-block: var(--space-6);
   }
 }
+
+/* ============================================================
+   Dark Mode — token overrides
+   Applied when <html data-theme="dark"> is set by useDarkMode
+   ============================================================ */
+[data-theme="dark"] {
+  --color-bg: #12120f;
+  --color-surface: #1e1e18;
+  --color-border: #2e2e26;
+  --color-text: #e8e4d8;
+  --color-text-muted: #a09880;
+  --color-accent: #5e8a62;
+  --color-accent-dark: #8db892;
+  --color-sand: #28281e;
+  --color-danger: #e05a4a;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Component-level dark overrides */
+[data-theme="dark"] .card {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme="dark"] .card__footer {
+  border-top-color: var(--color-border);
+  background-color: rgba(30, 30, 24, 0.6);
+}
+
+[data-theme="dark"] .badge--outline {
+  background-color: rgba(30, 30, 24, 0.85);
+  color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+[data-theme="dark"] .badge--filled {
+  background-color: var(--color-accent);
+  color: #e8e4d8;
+  border-color: var(--color-accent);
+}
+
+[data-theme="dark"] .badge--dark {
+  background-color: var(--color-text);
+  color: var(--color-surface);
+}
+
+[data-theme="dark"] .tag {
+  background-color: var(--color-sand);
+  color: var(--color-accent-dark);
+}
+
+[data-theme="dark"] .btn--primary {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #e8e4d8;
+}
+
+[data-theme="dark"] .btn--primary:hover {
+  background-color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: #12120f;
+}
+
+[data-theme="dark"] .btn--ghost {
+  border-color: var(--color-border);
+  color: var(--color-accent-dark);
+}
+
+[data-theme="dark"] .btn--ghost:hover {
+  border-color: var(--color-accent-dark);
+  background-color: var(--color-sand);
+}
+
+[data-theme="dark"] .input {
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(94, 138, 98, 0.25);
+}
+
+[data-theme="dark"] .icon-btn {
+  background-color: rgba(232, 228, 216, 0.15);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .icon-btn:hover {
+  background-color: var(--color-accent);
+  color: #12120f;
+}
+
+[data-theme="dark"] ::selection {
+  background-color: var(--color-accent);
+  color: #e8e4d8;
+}
+
+/* ============================================================
+   Dark Mode Toggle Button
+   ============================================================ */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.dark-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+
+.dark-mode-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+  box-shadow: var(--shadow-md);
+}
+
+.dark-mode-toggle__track {
+  position: relative;
+  display: inline-block;
+  width: 2.75rem;
+  height: 1.5rem;
+  background-color: var(--color-sand);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .dark-mode-toggle__track {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.dark-mode-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color var(--transition-base);
+}
+
+[data-theme="dark"] .dark-mode-toggle__thumb {
+  transform: translateX(1.25rem);
+  background-color: #12120f;
+}
+
+.dark-mode-toggle__icon {
+  font-size: 0.7rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.dark-mode-toggle:hover .dark-mode-toggle__icon {
+  transform: rotate(20deg) scale(1.15);
+}
+
+.dark-mode-toggle__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
