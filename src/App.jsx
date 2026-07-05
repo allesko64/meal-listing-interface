@@ -23,7 +23,7 @@ export default function App() {
         {error && <p className="is-danger">Error: {error}</p>}
 
         {!loading && !error && meals.length === 0 && (
-          <p className="text-muted">No meals found</p>
+          <p className="text-muted">No meals can be founded found</p>
         )}
 
         {!loading && meals.length > 0 && (
